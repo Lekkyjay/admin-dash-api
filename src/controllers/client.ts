@@ -42,7 +42,7 @@ export const getTransactions = async (req: Request, res: Response) => {
 
     // formatted sort should look like { userId: -1 }
     const generateSort = () => {
-      const sortParsed = JSON.parse(sort as string)
+      const sortParsed = JSON.parse(sort as string)     //converts JSON string to JS obj.
       const sortFormatted = {
         [sortParsed.field]: (sortParsed.sort = 'asc' ? 1 : -1),
       }
