@@ -36,11 +36,6 @@ export const getCustomers = async (req: Request, res: Response) => {
   }
 }
 
-type ISort = [{
-  field: string
-  sort: string
-}]
-
 export const getTransactions = async (req: Request, res: Response) => {
   try {
     // sort should look like this: { 'field': 'userId', 'sort': 'desc'}
