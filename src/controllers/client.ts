@@ -47,8 +47,8 @@ export const getTransactions = async (req: Request, res: Response) => {
       const sortParsed = JSON.parse(sort as string)     //converts JSON string to JS obj.
       // console.log({sortParsed})       // sortParsed: [ { field: 'userId', sort: 'asc' } ]
       const [ sortObj ] = sortParsed  //destructured obj out of array into sortObj variable
-      const field = sortObj.field
-      const sortKey = sortObj.sort
+      const field = sortObj ? sortObj.field : 'userId'
+      const sortKey = sortObj ? sortObj.sort : 'asc'
       const sortFormatted = {
         // [sortParsed.field as keyof ISort]: (sortParsed.sort = 'asc' ? 1 : -1) as SortOrder 
         // [sortParsed.field]: (sortParsed.sort = 'asc' ? 1 : -1) as SortOrder 
@@ -84,20 +84,21 @@ export const getTransactions = async (req: Request, res: Response) => {
 }
 
 interface ISO3 {
-  countryISO3: number
+  [x: string]: number
 }
 
 export const getGeography = async (req: Request, res: Response) => {
   try {
     const users = await User.find()
 
-    const mappedLocations = users.reduce((acc, { country }) => {
+    //aiming for: [{ "id": "GHN", "value": 294 }, { "id": "USA", "value": 124 }]
+    const mappedLocations = users.reduce((acc, { country }) => { 
       // const countryISO3 = getCountryIso3(country)
-      const countryISO3 = countryToAlpha2(country as string)
-      if (!acc[countryISO3 as keyof ISO3]) {
-        acc[countryISO3 as keyof ISO3] = 0
+      const countryISO3 = countryToAlpha3(country as string)
+      if (!acc[countryISO3 as string]) {
+        acc[countryISO3 as string] = 0    //acc = { 'usa': 0 }
       }
-      acc[countryISO3 as keyof ISO3]++
+      acc[countryISO3 as string]++
       return acc
     }, {} as ISO3)
 
