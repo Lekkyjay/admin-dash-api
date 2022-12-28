@@ -10,20 +10,20 @@ import managementRoutes from './routes/management'
 import salesRoutes from './routes/sales'
 
 // data imports
-import User from './models/User'
-import Product from './models/Product'
-import ProductStat from './models/ProductStat'
-import Transaction from './models/Transaction'
-import OverallStat from './models/OverallStat'
-import AffiliateStat from './models/AffiliateStat'
-import { 
-  dataUser,
-  dataProduct,
-  dataProductStat,
-  dataTransaction,
-  dataOverallStat,
-  dataAffiliateStat,
-} from './data/index'
+// import User from './models/User'
+// import Product from './models/Product'
+// import ProductStat from './models/ProductStat'
+// import Transaction from './models/Transaction'
+// import OverallStat from './models/OverallStat'
+// import AffiliateStat from './models/AffiliateStat'
+// import { 
+//   dataUser,
+//   dataProduct,
+//   dataProductStat,
+//   dataTransaction,
+//   dataOverallStat,
+//   dataAffiliateStat,
+// } from './data/index'
 
 /* CONFIGURATION */
 dotenv.config()
