@@ -38,9 +38,7 @@ export const getUserPerformance = async (req: Request, res: Response) => {
       (transaction) => transaction !== null
     )
 
-    res
-      .status(200)
-      .json({ user: userWithStats[0], sales: filteredSaleTransactions })
+    res.status(200).json({ user: userWithStats[0], sales: filteredSaleTransactions })
   } catch (error: any) {
     res.status(404).json({ message: error.message })
   }
